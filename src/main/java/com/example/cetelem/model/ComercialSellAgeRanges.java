@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-//import io.swagger.annotations.ApiModel;
-//import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-//@ApiModel(description = "Client's comercial Sell")
+@ApiModel(description = "Client's comercial Sell")
 @Data(staticConstructor = "of")
 @ToString(includeFieldNames = true)
 @Builder(builderClassName = "Builder",buildMethodName = "build")
@@ -36,13 +36,13 @@ public class ComercialSellAgeRanges {
 	@EqualsAndHashCode.Include
     @Column(unique = true, name = "lowRange")
 	@NotNull
-//	@ApiModelProperty(notes = "Low range of client's age to apply to the comecial sell")
+	@ApiModelProperty(notes = "Low range of client's age to apply to the comecial sell")
 	private Short lowRange;
 	
 	@EqualsAndHashCode.Include
     @Column(unique = true, name = "highRange")
 	@NotNull
-//	@ApiModelProperty(notes = "High range of client's age to apply to the comecial sell")
+	@ApiModelProperty(notes = "High range of client's age to apply to the comecial sell")
 	private Short highRange;
     
     
