@@ -34,10 +34,20 @@ Será dada relevância aos seguintes pontos:
 
 A solução encontrada deverá ser compactada em formato .zip e anexada a um email enviado para [Mauricio.Fernandes@cetelem.pt] com o assunto "BNP Paribas Personal Finance | Interview | Code Challenge".
 
+Prerequisitos: 
+
+1. Install https://howtodoinjava.com/automation/lombok-eclipse-installation-examples/
+2.
 
 Tarefas: 
 * Model Cliente e proposta (lombok)
 * Repository (H2 DB, JPA spring data)
-* Service layer (propostas comerciais, listagem de clientes) + Unit Testing 
-* Controler (Unit testing with Validations)
+* Service layer (propostas comerciais, listagem de clientes) + Unit Testing + Swagger
+* Controler (Unit•Primeiro Nome
+•Último Nome
+•Email
+•Idade [18 - 70]
+•Perfil de risco [Baixo, Médio, Elevado]
+•Zona geográfica [Norte, Centro, Sul]
+ testing with Validations)
 * 
