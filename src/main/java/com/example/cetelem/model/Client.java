@@ -1,14 +1,21 @@
 package com.example.cetelem.model;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +27,7 @@ import lombok.ToString;
 //@ApiModel(description = "Client model")
 @Data(staticConstructor = "of")
 @ToString(includeFieldNames = true)
-@Builder(builderClassName = "Builder",buildMethodName = "build")
+@Builder(builderClassName = "Builder", buildMethodName = "build")
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -60,7 +67,16 @@ public class Client {
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
-
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@EqualsAndHashCode.Exclude
+	@JoinTable(
+			  name = "client_salles_map", 
+			  joinColumns = @JoinColumn(name = "client_id"), 
+			  inverseJoinColumns = {@JoinColumn(name = "salles_sell_id")})
+	private Set<SallesSell> sallesSell;
+	
+	
 	public static class Builder {
 		public Client build() {
             if (age < 18 || age > 70) {
@@ -78,8 +94,12 @@ public class Client {
             if (Objects.isNull(geographicalArea)) {
                 throw new RuntimeException("Geographical Area is null");
             }
-            return new Client(id, firstName, lastName, email, age, risKProfile, geographicalArea);
-        }
+            
+            Client client = new Client(id, firstName, lastName, email, age, risKProfile, geographicalArea, sallesSell);
+            client.setSallesSell(new HashSet<SallesSell>()); 
+            return client;
+		}
+		
     }
 	
 }

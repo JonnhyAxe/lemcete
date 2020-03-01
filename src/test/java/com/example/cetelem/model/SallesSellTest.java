@@ -10,7 +10,6 @@ class SallesSellTest {
 	@Test
 	public void testClientHashEquality() {
 		
-		Integer[] range = new Integer[] {18, 19};
 
 		SallesSell comercialSell = SallesSell.builder()
 				.name("Kids under 20").comercialSellAgeRanges("18,19")

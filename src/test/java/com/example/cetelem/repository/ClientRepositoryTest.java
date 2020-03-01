@@ -23,7 +23,7 @@ public class ClientRepositoryTest {
 	private ClientRepository repository;
 
 	@Test
-	public void testAllMusics() throws Exception {
+	public void testAllClients() throws Exception {
 
 		List<Client> actualList = new ArrayList<Client>();
 

@@ -1,9 +1,14 @@
 package com.example.cetelem.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -16,8 +21,8 @@ import lombok.ToString;
 
 //@ApiModel(description = "Client's comercial Sell")
 @Data(staticConstructor = "of")
-@ToString(includeFieldNames = true)
-@Builder(builderClassName = "Builder", buildMethodName = "build")
+@ToString(includeFieldNames = false)
+@Builder
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -52,6 +57,12 @@ public class SallesSell {
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
+	
+	@ToString.Exclude
+	@Builder.Default
+	@ManyToMany(mappedBy = "sallesSell", fetch = FetchType.EAGER)
+	@EqualsAndHashCode.Exclude
+	private Set<Client> clients = new HashSet<Client>();
 
 //	public void setComercialSellAgeRanges(Integer[] vals) {
 //		comercialSellAgeRanges = Arrays.stream(vals).map((val) -> Integer.toString(val)).collect(Collectors.joining(","));
