@@ -1,6 +1,8 @@
 # Cetelem code challenge
 
-Pretende-se com este code challenge que se desenvolva um serviço em Spring Boot para gestão de propostas comerciais de Crédito. O software em questão deverá permitir a gestão de propostas comerciais bem como a identificação da listagem de clientes que faz match com os critérios de uma determinada proposta comercial.
+Pretende-se com este code challenge que se desenvolva um serviço em Spring Boot para gestão de propostas comerciais de Crédito. 
+O software em questão deverá permitir a gestão de propostas comerciais bem como a identificação da listagem de clientes 
+que faz match com os critérios de uma determinada proposta comercial.
 
 Cada proposta comercial deve ser constituída pelo menos pelos seguintes critérios de informação:
 * Nome da proposta comercial
@@ -31,3 +33,11 @@ Será dada relevância aos seguintes pontos:
   * Testes
 
 A solução encontrada deverá ser compactada em formato .zip e anexada a um email enviado para [Mauricio.Fernandes@cetelem.pt] com o assunto "BNP Paribas Personal Finance | Interview | Code Challenge".
+
+
+Tarefas: 
+* Model Cliente e proposta (lombok)
+* Repository (H2 DB, JPA spring data)
+* Service layer (propostas comerciais, listagem de clientes) + Unit Testing 
+* Controler (Unit testing with Validations)
+* 
