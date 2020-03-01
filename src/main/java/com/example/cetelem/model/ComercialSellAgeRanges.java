@@ -2,11 +2,15 @@ package com.example.cetelem.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +18,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@ApiModel(description = "Client's comercial Sell")
+//@ApiModel(description = "Client's comercial Sell")
 @Data(staticConstructor = "of")
 @ToString(includeFieldNames = true)
 @Builder(builderClassName = "Builder",buildMethodName = "build")
@@ -24,16 +28,24 @@ import lombok.ToString;
 @Entity
 public class ComercialSellAgeRanges {
 	
-	@EqualsAndHashCode.Include
-	@NotNull
-	@ApiModelProperty(notes = "Low range of client's age to apply to the comecial sell")
-	private short lowRange;
+	@EqualsAndHashCode.Exclude
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 	
 	@EqualsAndHashCode.Include
+    @Column(unique = true, name = "lowRange")
 	@NotNull
-	@ApiModelProperty(notes = "High range of client's age to apply to the comecial sell")
-	private short highRange;
+//	@ApiModelProperty(notes = "Low range of client's age to apply to the comecial sell")
+	private Short lowRange;
 	
+	@EqualsAndHashCode.Include
+    @Column(unique = true, name = "highRange")
+	@NotNull
+//	@ApiModelProperty(notes = "High range of client's age to apply to the comecial sell")
+	private Short highRange;
+    
+    
 	static class Builder {
 		ComercialSellAgeRanges build() {
  
@@ -43,7 +55,7 @@ public class ComercialSellAgeRanges {
             if (Objects.isNull(highRange)) {
                 throw new RuntimeException("High age range is null");
             }
-            return new ComercialSellAgeRanges(lowRange, highRange);
+            return new ComercialSellAgeRanges(id, lowRange, highRange);
         }
     }
 	

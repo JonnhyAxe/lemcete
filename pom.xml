@@ -17,7 +17,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<swagger2.version>2.4.0</swagger2.version>
+		<swagger2.version>2.9.2</swagger2.version>
 		<build-plugin.jacoco.version>0.8.3</build-plugin.jacoco.version>
 
 	</properties>
@@ -62,18 +62,18 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${swagger2.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>io.springfox</groupId> -->
+<!-- 			<artifactId>springfox-swagger2</artifactId> -->
+<!-- 			<version>${swagger2.version}</version> -->
+<!-- 		</dependency> -->
 
 		<!-- UI support -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${swagger2.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>io.springfox</groupId> -->
+<!-- 			<artifactId>springfox-swagger-ui</artifactId> -->
+<!-- 			<version>${swagger2.version}</version> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -94,7 +94,7 @@
 
 	<build>
 		<plugins>
-			<plugin>
+					<plugin>
 				<groupId>org.asciidoctor</groupId>
 				<artifactId>asciidoctor-maven-plugin</artifactId>
 				<version>1.5.8</version>
@@ -118,6 +118,34 @@
 						<version>${spring-restdocs.version}</version>
 					</dependency>
 				</dependencies>
+				
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+<!-- 					<release>${java.version}</release> -->
+					<verbose>true</verbose>
+					<annotationProcessorPaths>
+<!-- 						<path> -->
+<!-- 							<groupId>org.mapstruct</groupId> -->
+<!-- 							<artifactId>mapstruct-processor</artifactId> -->
+<!-- 							<version>1.3.0.Beta2</version> -->
+<!-- 						</path> -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+<!-- 				<dependencies> -->
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.ow2.asm</groupId> -->
+<!-- 						<artifactId>asm</artifactId> -->
+<!-- 						<version>6.2</version> -->
+<!-- 					</dependency> -->
+<!-- 				</dependencies> -->
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

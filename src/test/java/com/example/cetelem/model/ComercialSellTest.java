@@ -9,16 +9,15 @@ class ComercialSellTest {
 
 	@Test
 	public void testClientHashEquality() {
-
-		ComercialSellAgeRanges comercialSellAgeRanges = ComercialSellAgeRanges.builder().lowRange((short) 18)
-				.lowRange((short) 19).build();
+		
+		Integer[] range = new Integer[] {18, 19};
 
 		ComercialSell comercialSell = ComercialSell.builder()
-				.name("Kids under 20").comercialSellAgeRanges(comercialSellAgeRanges)
+				.name("Kids under 20").comercialSellAgeRanges("18,19")
 				.geographicalArea(GeographicalArea.NORTH).risKProfile(ComercialSellRiskProfile.LOW).build();
 
 		ComercialSell sameComercialSell = ComercialSell.builder()
-				.name("Kids under 20").comercialSellAgeRanges(comercialSellAgeRanges)
+				.name("Kids under 20").comercialSellAgeRanges("18,19")
 				.geographicalArea(GeographicalArea.NORTH).risKProfile(ComercialSellRiskProfile.LOW).build();
 
 		
