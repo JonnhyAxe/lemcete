@@ -17,7 +17,7 @@ import com.example.cetelem.model.Client;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ClientRepositoryTest {
+public class SallesSellRepositoryTest {
 
 	@Autowired
 	private ClientRepository repository;

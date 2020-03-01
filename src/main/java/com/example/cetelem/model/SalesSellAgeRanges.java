@@ -26,11 +26,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ComercialSellAgeRanges {
+public class SalesSellAgeRanges {
 	
 	@EqualsAndHashCode.Exclude
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 	
 	@EqualsAndHashCode.Include
@@ -47,7 +47,7 @@ public class ComercialSellAgeRanges {
     
     
 	static class Builder {
-		ComercialSellAgeRanges build() {
+		SalesSellAgeRanges build() {
  
             if (Objects.isNull(lowRange)) {
                 throw new RuntimeException("Low age range is null");
@@ -55,7 +55,7 @@ public class ComercialSellAgeRanges {
             if (Objects.isNull(highRange)) {
                 throw new RuntimeException("High age range is null");
             }
-            return new ComercialSellAgeRanges(id, lowRange, highRange);
+            return new SalesSellAgeRanges(id, lowRange, highRange);
         }
     }
 	

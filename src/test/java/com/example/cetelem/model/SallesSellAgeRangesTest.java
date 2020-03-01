@@ -5,16 +5,16 @@ import static org.assertj.core.api.BDDAssertions.then;
 import org.junit.Test;
 
 
-class ComercialSellAgeRangesTest {
+class SallesSellAgeRangesTest {
 
 	@Test
 	public void testComercialSellAgeRangestEquality() {
-		ComercialSellAgeRanges comercialSellAgeRanges = ComercialSellAgeRanges.builder()
+		SalesSellAgeRanges comercialSellAgeRanges = SalesSellAgeRanges.builder()
 				.lowRange((short) 18)
 				.lowRange((short) 19)
 				.build();
 
-		ComercialSellAgeRanges sameComercialSellAgeRanges = ComercialSellAgeRanges.builder()
+		SalesSellAgeRanges sameComercialSellAgeRanges = SalesSellAgeRanges.builder()
 				.lowRange((short) 18)
 				.lowRange((short) 19)
 				.build();
@@ -29,11 +29,11 @@ class ComercialSellAgeRangesTest {
 	
 	@Test(expected = RuntimeException.class)
 	public void testComercialSellAgeLowRangesNullCheck() {
-		ComercialSellAgeRanges.builder().build();
+		SalesSellAgeRanges.builder().build();
 	}
 	
 	@Test(expected = RuntimeException.class)
 	public void testComercialSellAgeHighRangesNullCheck() {
-		ComercialSellAgeRanges.builder().lowRange((short)18).build();
+		SalesSellAgeRanges.builder().lowRange((short)18).build();
 	}
 }

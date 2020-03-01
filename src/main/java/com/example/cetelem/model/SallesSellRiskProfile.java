@@ -1,5 +1,5 @@
 package com.example.cetelem.model;
 
-public enum ComercialSellRiskProfile {
+public enum SallesSellRiskProfile {
 	LOW, AVERAGE, HIGH;
 }

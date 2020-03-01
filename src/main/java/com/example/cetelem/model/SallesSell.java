@@ -1,25 +1,17 @@
 package com.example.cetelem.model;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 //@ApiModel(description = "Client's comercial Sell")
@@ -30,7 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ComercialSell {
+public class SallesSell {
 
 	@EqualsAndHashCode.Exclude
 	@Id
@@ -46,7 +38,7 @@ public class ComercialSell {
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Risk Profile")
-	private ComercialSellRiskProfile risKProfile; // [Baixo, Médio, Elevado]
+	private SallesSellRiskProfile risKProfile; // [Baixo, Médio, Elevado]
 
 //	@OneToOne(mappedBy = "comercialSellAgeRanges")
 	@EqualsAndHashCode.Exclude

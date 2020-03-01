@@ -5,20 +5,20 @@ import static org.assertj.core.api.BDDAssertions.then;
 import org.junit.Test;
 
 
-class ComercialSellTest {
+class SallesSellTest {
 
 	@Test
 	public void testClientHashEquality() {
 		
 		Integer[] range = new Integer[] {18, 19};
 
-		ComercialSell comercialSell = ComercialSell.builder()
+		SallesSell comercialSell = SallesSell.builder()
 				.name("Kids under 20").comercialSellAgeRanges("18,19")
-				.geographicalArea(GeographicalArea.NORTH).risKProfile(ComercialSellRiskProfile.LOW).build();
+				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
 
-		ComercialSell sameComercialSell = ComercialSell.builder()
+		SallesSell sameComercialSell = SallesSell.builder()
 				.name("Kids under 20").comercialSellAgeRanges("18,19")
-				.geographicalArea(GeographicalArea.NORTH).risKProfile(ComercialSellRiskProfile.LOW).build();
+				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
 
 		
 		then(comercialSell)
