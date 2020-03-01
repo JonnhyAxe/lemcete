@@ -61,8 +61,8 @@ public class Client {
 	@ApiModelProperty(notes = "Geographical Area")
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
 
-	static class Builder {
-		Client build() {
+	public static class Builder {
+		public Client build() {
             if (age < 18 || age > 70) {
                 throw new RuntimeException("Invaid age range [18 - 70]");
             }
