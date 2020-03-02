@@ -83,6 +83,9 @@ public class CetelemApplication {
 
 			Client client = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
 					.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+			Client client3 = Client.builder().firstName("Luisa").lastName("Sousa").age((short) 33)
+					.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+			
 			Client client2 = Client.builder().firstName("Joao").lastName("Miguel").age((short) 45)
 					.risKProfile(ClientRiskProfile.AVERAGE).geographicalArea(GeographicalArea.CENTER).build();
 
@@ -113,8 +116,13 @@ public class CetelemApplication {
 			client2.getSallesSell().add(middleAgeComercialSell);
 			client2.getSallesSell().add(passiveNorthWorkerComercialSell);
 			
+			
+			client3.getSallesSell().add(under40ComercialSell);
+
+			
 			clientRepository.save(client);
 			clientRepository.save(client2);
+			clientRepository.save(client3);
 
 			// fetch all books
 			System.out.println("Client found with findAll():");

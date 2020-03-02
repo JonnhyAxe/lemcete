@@ -22,8 +22,8 @@ Por outro lado, cada cliente, deve ser descrito com base nos seguintes critério
 * Gerar aleatoriamente uma listagem de 1 milhão de clientes e auto popular a BD com essa informação
 * Desenvolver CRUD REST para gestão das propostas comerciais
 * Criar método REST que devolva lista de clientes que faz match com uma determinada proposta comercial
-  * Considera-se que um cliente faz match com uma proposta comercial se tiver o mesmo perfil de risco, zona geográfica e idade dentro da gama definida para a proposta
-  * Para cada cliente que faça match, deverá ser devolvida a totalidade da informação deste
+* Considera-se que um cliente faz match com uma proposta comercial se tiver o mesmo perfil de risco, zona geográfica e idade dentro da gama definida para a proposta
+* Para cada cliente que faça match, deverá ser devolvida a totalidade da informação deste
 * Criar método REST que devolva lista de propostas comerciais possíveis para um determinado cliente
 
 ## Entrega
@@ -39,7 +39,7 @@ Prerequisitos:
 1. Install https://howtodoinjava.com/automation/lombok-eclipse-installation-examples/
 2. Assumiu-se uma relação N-to-N entre Clientes e Propostas Comercais.
 3. Inmemory DB
-4. 
+4. Entidades no serviço sao identificaveis por IDs
 
 Tarefas: 
 * Model Cliente e proposta (lombok)
@@ -54,4 +54,22 @@ Tarefas:
 •Perfil de risco [Baixo, Médio, Elevado]
 •Zona geográfica [Norte, Centro, Sul]
  testing with Validations)
-* 
+
+ 
+Test de listagens: 
+
+1. Criar método REST que devolva lista de clientes que faz match com uma determinada proposta comercial
+ 
+http://localhost:8080/sallesSell/search/findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges?risKProfile=LOW&geographicalArea=NORTH&comercialSellAgeRanges=18,45
+
+http://localhost:8080/sallesSell/1/clients
+http://localhost:8080/sallesSell/4/clients
+
+Resultado: Deverá retornar Joao Machado (visto Joao Machado ser repetido na salles 4) e Luisa Sousa.
+
+
+2. Criar método REST que devolva lista de propostas comerciais possíveis para um determinado cliente
+
+Todos os clientes: http://localhost:8080/clients
+Cliente: http://localhost:8080/clients/7
+Poposta do client http://localhost:8080/clients/7/sallesSell
