@@ -57,9 +57,8 @@ public class SalesSelleIImpl implements SallesSellService {
 
 	@Override
 	public void deleteSallesSell(Long sallesSellID) {
-		//Limitation on H2 FK
+		//Limitation with H2 FK cascading with REMOVE
 		SallesSell sales =  sallesSellRepository.findById(sallesSellID).get();
-		
 		if (Objects.nonNull(sallesSellRepository.findById(sallesSellID))){
 			
 			sales.getClients().stream().forEach((client) -> client.getSallesSell().remove(sales));

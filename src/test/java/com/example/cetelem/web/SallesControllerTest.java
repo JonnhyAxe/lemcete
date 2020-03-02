@@ -140,7 +140,7 @@ public class SallesControllerTest {
 				.andReturn().getResponse();
 
 		then(response.getStatus()).as(CHECK_THAT_SALLES_SELL_IS_DELETED).isNotNull()
-				.isEqualTo(HttpStatus.OK.value());
+				.isEqualTo(HttpStatus.ACCEPTED.value());
 
 
 	}
@@ -162,7 +162,7 @@ public class SallesControllerTest {
 				.andReturn().getResponse();
 
 		then(response.getStatus()).as(CHECK_THAT_SALLES_SELL_IS_DELETED).isNotNull()
-				.isEqualTo(HttpStatus.CREATED.value());
+				.isEqualTo(HttpStatus.ACCEPTED.value());
 
 
 	}
