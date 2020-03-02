@@ -77,6 +77,7 @@ Todos os clientes: http://localhost:8080/clients
 Cliente: http://localhost:8080/clients/7
 Poposta do client http://localhost:8080/clients/7/sallesSell
 
+3. Swagger - http://localhost:8080/swagger-ui.html#/
 
 Improvements: 
 
