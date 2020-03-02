@@ -1,6 +1,5 @@
 package com.example.cetelem.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,7 +18,7 @@ public class SalesSelleIImpl implements SallesSellService {
 
 
 	@Override
-	public List<Client> getAllClientBySallesSell(SallesSell sallesSell) {
+	public Set<Client> getAllClientBySallesSell(SallesSell sallesSell) {
 		List<SallesSell> sallesSells = sallesSellRepository.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(
 				sallesSell.getRisKProfile(), 
 				sallesSell.getGeographicalArea(), 
@@ -30,7 +29,7 @@ public class SalesSelleIImpl implements SallesSellService {
 				.flatMap(x -> x.stream())
 				.collect(Collectors.toSet()); 
 		
-		return new ArrayList<>(sallesSellStreamClientDistinct);		
+		return sallesSellStreamClientDistinct;		
 	}
 
 }

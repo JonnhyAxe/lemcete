@@ -1,9 +1,12 @@
 package com.example.cetelem.service;
 
+import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +22,6 @@ import com.example.cetelem.model.GeographicalArea;
 import com.example.cetelem.model.SallesSell;
 import com.example.cetelem.model.SallesSellRiskProfile;
 import com.example.cetelem.repository.SallesSellRepository;
-
-import static org.assertj.core.api.BDDAssertions.then;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -53,7 +54,7 @@ public class SalesSelleIImplTest {
 		
 		// Then
 		then(list)
-      		.as("List is Empty")
+      		.as("List is not Empty")
       		.isEqualTo(listResult);
 	}
 
@@ -71,12 +72,13 @@ public class SalesSelleIImplTest {
 	public void testSallesSellDistinctClients() {
 		// Given
 		List<SallesSell> list = new ArrayList<SallesSell>();
-		List<Client> expectedlistClients = new ArrayList<Client>();
+		Set<Client> expectedlistClients = new HashSet<Client>();
 
 		Client joao = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
 				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
 		Client luisa = Client.builder().firstName("Luisa").lastName("Sousa").age((short) 33)
 				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+		
 		expectedlistClients.add(joao);
 		expectedlistClients.add(luisa);
 
@@ -101,11 +103,11 @@ public class SalesSelleIImplTest {
 		.name("Kids under 20").comercialSellAgeRanges(RANGE_18_45)
 		.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
 		
-		List<Client> listResult = salesSell.getAllClientBySallesSell(sallesSell);
+		Set<Client> listResult = salesSell.getAllClientBySallesSell(sallesSell);
 		
 		// Then
 		then(listResult)
-      		.as("List is Empty")
+      		.as("Collections are not the same")
       		.isEqualTo(expectedlistClients);
 	}
 	
