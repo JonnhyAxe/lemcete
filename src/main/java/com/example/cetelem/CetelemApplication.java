@@ -128,6 +128,7 @@ public class CetelemApplication {
 			System.out.println("Client found with findAll():");
 			System.out.println("---------------------------");
 			for (Client clientLoaded : clientRepository.findAll()) {
+
 				System.out.println(clientLoaded);
 			}
 			System.out.println();

@@ -48,7 +48,7 @@ Tarefas:
 * Model Cliente e proposta (lombok)
 * Repository (H2 DB, JPA spring data)
 * Service layer (propostas comerciais, listagem de clientes) + Unit Testing 
-* Controler (Unit tests + Swagger + Integratio Tests
+* Controller layer (Unit tests + Swagger + Integration Tests
 
 •Primeiro Nome
 •Último Nome
@@ -78,8 +78,8 @@ Cliente: http://localhost:8080/clients/7
 Poposta do client http://localhost:8080/clients/7/sallesSell
 
 
-Improvments: 
+Improvements: 
 
 BDD reports with Cucumber
 Cache
-Spring Reactor Web
+Spring Reactor Web with non blocking Netty server

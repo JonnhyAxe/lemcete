@@ -46,8 +46,8 @@ public class SalesSelleIImplTest {
 		// Given
 		List<SallesSell> list = createEmptySallesSellList();
 
-		when(mockRepository.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile.LOW,
-				GeographicalArea.NORTH, RANGE_18_45)).thenReturn(list);
+		when(mockRepository.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile.LOW, GeographicalArea.NORTH, RANGE_18_45))
+			.thenReturn(list);
 
 		// when
 		List<SallesSell> listResult = mockRepository.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile.LOW, GeographicalArea.NORTH, RANGE_18_45);
@@ -74,34 +74,45 @@ public class SalesSelleIImplTest {
 		List<SallesSell> list = new ArrayList<SallesSell>();
 		Set<Client> expectedlistClients = new HashSet<Client>();
 
-		Client joao = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
-				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
-		Client luisa = Client.builder().firstName("Luisa").lastName("Sousa").age((short) 33)
-				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+		Client joao = Client.builder()
+				.firstName("Joao").lastName("Machado").age((short) 35)
+				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH)
+				.build();
+		Client luisa = Client.builder()
+				.firstName("Luisa").lastName("Sousa").age((short) 33)
+				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH)
+				.build();
 		
 		expectedlistClients.add(joao);
 		expectedlistClients.add(luisa);
 
 		
-		SallesSell comercialSell = SallesSell.builder().name("People under Forthies").comercialSellAgeRanges(RANGE_18_45)
-				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
+		SallesSell comercialSell = SallesSell.builder()
+				.name("People under Forthies").comercialSellAgeRanges(RANGE_18_45)
+				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW)
+				.build();
+		
 		comercialSell.getClients().add(joao);
 		comercialSell.getClients().add(luisa);
 		
-		SallesSell sameComercialSell2 = SallesSell.builder().name("Active Workers").comercialSellAgeRanges(RANGE_18_45)
-				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
+		SallesSell sameComercialSell2 = SallesSell.builder()
+				.name("Active Workers").comercialSellAgeRanges(RANGE_18_45)
+				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW)
+				.build();
+		
 		sameComercialSell2.getClients().add(joao);
 
 		list.add(comercialSell);
 		list.add(sameComercialSell2);
 
-		when(mockRepository.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile.LOW,
-				GeographicalArea.NORTH, RANGE_18_45)).thenReturn(list);
+		when(mockRepository.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile.LOW, GeographicalArea.NORTH, RANGE_18_45))
+			.thenReturn(list);
 
 		// when
 		SallesSell sallesSell = SallesSell.builder()
-		.name("Kids under 20").comercialSellAgeRanges(RANGE_18_45)
-		.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
+				.name("People under Forthies").comercialSellAgeRanges(RANGE_18_45)
+				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW)
+				.build();
 		
 		Set<Client> listResult = salesSell.getAllClientBySallesSell(sallesSell);
 		

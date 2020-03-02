@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.example.cetelem.model.Client;
 import com.example.cetelem.model.SallesSell;
 import com.example.cetelem.repository.SallesSellRepository;
 
+@Component
 public class SalesSelleIImpl implements SallesSellService {
 
 	private SallesSellRepository sallesSellRepository;

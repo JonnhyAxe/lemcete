@@ -50,7 +50,7 @@ public class ClientServiceImplTest {
 		when(clientRepository.findById(joao.getId())).thenReturn(Optional.of(joao));
 
 		// When
-		List<SallesSell> actualResult = clientService.getAllSallesSellByClient(joao);
+		List<SallesSell> actualResult = clientService.getAllSallesSellByClient(joao.getId());
 
 		// Then
 		then(actualResult).as("List is not Empty").isEqualTo(expectedListResult);
@@ -79,7 +79,7 @@ public class ClientServiceImplTest {
 		when(clientRepository.findById(joao.getId())).thenReturn(Optional.of(joao));
 
 		// When
-		List<SallesSell> actualResult = clientService.getAllSallesSellByClient(joao);
+		List<SallesSell> actualResult = clientService.getAllSallesSellByClient(joao.getId());
 
 		// Then
 		then(actualResult).as("List is Empty").isEqualTo(expectedListResult);
@@ -97,7 +97,7 @@ public class ClientServiceImplTest {
 		// Then - IllegalArgumentException
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			clientService.getAllSallesSellByClient(joao);
+			clientService.getAllSallesSellByClient(joao.getId());
 		});
 
 	}

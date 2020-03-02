@@ -7,6 +7,6 @@ import com.example.cetelem.model.SallesSell;
 
 public interface ClientService {
 	
-	List<SallesSell> getAllSallesSellByClient(Client client);
+	List<SallesSell> getAllSallesSellByClient(Long clientID);
 
 }

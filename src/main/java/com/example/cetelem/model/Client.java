@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -66,7 +68,8 @@ public class Client {
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
-
+	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
 	@EqualsAndHashCode.Exclude
 	@JoinTable(name = "client_salles_map", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = {

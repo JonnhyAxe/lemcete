@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -57,7 +59,8 @@ public class SallesSell {
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
-	
+
+	@JsonIgnore
 	@ToString.Exclude
 	@Builder.Default
 	@ManyToMany(mappedBy = "sallesSell", fetch = FetchType.EAGER)
