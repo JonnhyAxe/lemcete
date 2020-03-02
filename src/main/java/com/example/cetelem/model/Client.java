@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,6 +42,7 @@ public class Client {
 	@EqualsAndHashCode.Exclude
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
 	@EqualsAndHashCode.Include
@@ -70,7 +75,9 @@ public class Client {
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
 	
 	@JsonIgnore
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@ManyToMany(fetch = FetchType.EAGER)
+
 	@EqualsAndHashCode.Exclude
 	@JoinTable(name = "client_salles_map", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = {
 			@JoinColumn(name = "salles_sell_id") })

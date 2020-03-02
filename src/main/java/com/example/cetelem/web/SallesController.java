@@ -50,7 +50,7 @@ public class SallesController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public void deleteArtistByName(@PathVariable("id") String id) {
+	public void deleteSallesSell(@PathVariable("id") String id) {
 //	    return Optional.ofNullable(sallesSellService.deleteSallesSell(Long.valueOf(id))).orElseThrow(
 //	        () -> new ArtistNotFoundException("Artist not found for the given name : " + encodedName));
 //	    
@@ -59,7 +59,7 @@ public class SallesController {
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void updateMusic(@RequestBody @Valid final SallesSell sallesSell) {
+	public void upateSallesSell(@RequestBody @Valid final SallesSell sallesSell) {
 		sallesSellService.upateSallesSell(sallesSell);
 	}
 

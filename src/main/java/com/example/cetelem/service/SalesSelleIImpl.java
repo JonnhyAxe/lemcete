@@ -47,16 +47,22 @@ public class SalesSelleIImpl implements SallesSellService {
 
 	@Override
 	public void upateSallesSell(SallesSell sallesSell) {
-		if (Objects.nonNull(sallesSellRepository.findById(sallesSell.getId()))){
-			sallesSellRepository.save(sallesSell);
+		SallesSell sales = sallesSellRepository.findById(sallesSell.getId()).get();
+
+		if (Objects.nonNull(sales)){
+			sallesSellRepository.save(sallesSell);		
 		}
 		//else throw Exception
 	}
 
 	@Override
 	public void deleteSallesSell(Long sallesSellID) {
+		//Limitation on H2 FK
+		SallesSell sales =  sallesSellRepository.findById(sallesSellID).get();
 		
 		if (Objects.nonNull(sallesSellRepository.findById(sallesSellID))){
+			
+			sales.getClients().stream().forEach((client) -> client.getSallesSell().remove(sales));
 			sallesSellRepository.deleteById(sallesSellID);
 		}
 		//else throw Exception

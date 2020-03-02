@@ -3,6 +3,8 @@ package com.example.cetelem.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ public class SallesSell {
 	@EqualsAndHashCode.Exclude
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 
 	@EqualsAndHashCode.Include
@@ -60,6 +63,7 @@ public class SallesSell {
 	@ToString.Exclude
 	@Builder.Default
 	@ManyToMany(mappedBy = "sallesSell", fetch = FetchType.EAGER)
+//	@ManyToMany(mappedBy = "sallesSell", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@EqualsAndHashCode.Exclude
 	private Set<Client> clients = new HashSet<Client>();
 
