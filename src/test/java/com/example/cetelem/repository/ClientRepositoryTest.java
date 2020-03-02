@@ -6,11 +6,13 @@ import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.MethodMode;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.cetelem.model.Client;
@@ -21,7 +23,8 @@ public class ClientRepositoryTest {
 
 	@Autowired
 	private ClientRepository repository;
-
+	
+	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
 	public void testAllClients() throws Exception {
 
@@ -30,6 +33,6 @@ public class ClientRepositoryTest {
 		repository.findAll().forEach((c) -> actualList.add(c));
 		
 		assertFalse(actualList.isEmpty());
-		assertEquals(2, actualList.size());
+		assertEquals(3, actualList.size());
 	}
 }

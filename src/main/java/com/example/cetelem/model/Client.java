@@ -37,7 +37,7 @@ public class Client {
 
 	@EqualsAndHashCode.Exclude
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@EqualsAndHashCode.Include
