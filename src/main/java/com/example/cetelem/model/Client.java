@@ -75,9 +75,7 @@ public class Client {
 	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
 	
 	@JsonIgnore
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@ManyToMany(fetch = FetchType.EAGER)
-
 	@EqualsAndHashCode.Exclude
 	@JoinTable(name = "client_salles_map", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = {
 			@JoinColumn(name = "salles_sell_id") })

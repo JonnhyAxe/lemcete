@@ -32,18 +32,11 @@ public class CetelemApplicationConfig {
 		return jsonConverter;
 	}
 
-	@Bean // Enabling and configuring Swagger
-	public Docket mainConfig() { // @formatter:off
+	@Bean 
+	public Docket mainConfig() { 
 
 		return new Docket(DocumentationType.SWAGGER_12).select().apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any()).build().pathMapping("/")
 				.directModelSubstitute(LocalDate.class, String.class).genericModelSubstitutes(ResponseEntity.class); // The
-																													// model
-
-
-		// data rather
-		// Spring
-		// specific
-		// artifacts
-	} // @formatter:on
+	} 
 }
