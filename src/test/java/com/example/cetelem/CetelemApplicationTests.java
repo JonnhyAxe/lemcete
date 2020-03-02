@@ -9,8 +9,7 @@ import org.springframework.test.annotation.DirtiesContext.MethodMode;
 class CetelemApplicationTests {
 
 	@Test
-	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
-
+	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	void contextLoads() {
 	}
 
