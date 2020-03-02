@@ -20,9 +20,7 @@ public class ClientServiceImpl implements ClientService {
 	public List<SallesSell> getAllSallesSellByClient(Client clientToSearch) {
 		Optional<Client> clientResult = clientRepository.findById(clientToSearch.getId());
 	    
-		Client client = clientResult.orElseThrow(() -> new RuntimeException("Client Id Must not be null"));
-
-		return new ArrayList<SallesSell>(client.getSallesSell());
+		return new ArrayList<SallesSell>(clientResult.get().getSallesSell());
 	}
 
 }

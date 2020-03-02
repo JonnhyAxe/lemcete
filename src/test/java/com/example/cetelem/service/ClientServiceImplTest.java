@@ -1,6 +1,7 @@
 package com.example.cetelem.service;
 
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import com.example.cetelem.repository.ClientRepository;
 @RunWith(MockitoJUnitRunner.class)
 
 public class ClientServiceImplTest {
-	
+
 	private static final String RANGE_18_45 = "18,45";
 
 	@InjectMocks
@@ -37,6 +38,22 @@ public class ClientServiceImplTest {
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	public void testEmptyListOfSallesSellByClientId() {
+		List<SallesSell> expectedListResult = new ArrayList<SallesSell>();
+
+		Client joao = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
+				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+
+		when(clientRepository.findById(joao.getId())).thenReturn(Optional.of(joao));
+
+		// When
+		List<SallesSell> actualResult = clientService.getAllSallesSellByClient(joao);
+
+		// Then
+		then(actualResult).as("List is not Empty").isEqualTo(expectedListResult);
 	}
 
 	@Test
@@ -55,20 +72,34 @@ public class ClientServiceImplTest {
 
 		expectedListResult.add(comercialSell);
 		expectedListResult.add(sameComercialSell2);
-		
+
 		joao.getSallesSell().add(comercialSell);
 		joao.getSallesSell().add(sameComercialSell2);
 
 		when(clientRepository.findById(joao.getId())).thenReturn(Optional.of(joao));
 
-		
 		// When
 		List<SallesSell> actualResult = clientService.getAllSallesSellByClient(joao);
-		
+
 		// Then
-		then(actualResult)
-  			.as("List is Empty")
-  			.isEqualTo(expectedListResult);
+		then(actualResult).as("List is Empty").isEqualTo(expectedListResult);
+	}
+
+	@Test
+	public void checkEntityArgumentNotExists() {
+		// Given
+
+		Client joao = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
+				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+
+		when(clientRepository.findById(joao.getId())).thenThrow(new IllegalArgumentException());
+
+		// Then - IllegalArgumentException
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			clientService.getAllSallesSellByClient(joao);
+		});
+
 	}
 
 }
