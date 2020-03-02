@@ -13,6 +13,7 @@ import com.example.cetelem.model.SallesSellRiskProfile;
 public interface SallesSellRepository  extends CrudRepository<SallesSell, Long> {
 
 	List<SallesSell> findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile risKProfile, GeographicalArea geographicalArea, String comercialSellAgeRanges);
+	SallesSell findByNameAndRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(String name, SallesSellRiskProfile risKProfile, GeographicalArea geographicalArea, String comercialSellAgeRanges);
 
 	
 }

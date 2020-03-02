@@ -41,20 +41,16 @@ public class SallesSell {
 	@ApiModelProperty(notes = "Name of the client's comecial sell - without format contrains")
 	private String name;
 
-//	@OneToOne(mappedBy = "risKProfile")
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Risk Profile")
 	private SallesSellRiskProfile risKProfile; // [Baixo, Médio, Elevado]
 
-//	@OneToOne(mappedBy = "comercialSellAgeRanges")
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Age Ranges to apply to the Commercial Sells")
-//	private ComercialSellAgeRanges comercialSellAgeRanges;
 	private String comercialSellAgeRanges;
 
-//	@OneToOne(mappedBy = "geographicalArea")
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")

@@ -8,4 +8,8 @@ import com.example.cetelem.model.SallesSell;
 public interface SallesSellService {
 	
 	Set<Client> getAllClientBySallesSell(SallesSell sallesSell);
+	
+	SallesSell createSallesSell(SallesSell sallesSell);
+	void upateSallesSell(SallesSell sallesSell);
+	void deleteSallesSell(Long sallesSellID);
 }
