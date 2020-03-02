@@ -32,10 +32,9 @@ import com.example.cetelem.model.SallesSell;
 import com.example.cetelem.model.SallesSellRiskProfile;
 import com.example.cetelem.service.SallesSellService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 @RunWith(MockitoJUnitRunner.class)
 public class SallesControllerTest {
-
-	private static final String RANGE_18_45 = "18,45";
 
 	private static final String CHECK_THAT_CLIENTS_LIST_IS_RETREIVED = "Check that salles match is retrieved";
 	private static final String CHECK_THAT_LIST_CONTENT_IS_CORRECT = "Check that list content is correct";

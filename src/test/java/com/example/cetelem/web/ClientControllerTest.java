@@ -58,7 +58,6 @@ public class ClientControllerTest {
 	}
 
 	@Test
-//	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	public void getClientSallesById() throws Exception {
 		Long clientID = (long) 1001;
 
