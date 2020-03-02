@@ -39,7 +39,10 @@ Prerequisitos:
 1. Install https://howtodoinjava.com/automation/lombok-eclipse-installation-examples/
 2. Assumiu-se uma relação N-to-N entre Clientes e Propostas Comercais.
 3. Inmemory DB
-4. Entidades no serviço sao identificaveis por IDs
+4. Entidades no serviço sao identificaveis por IDs. 
+5. RepositoryRestResource sao expostos apenas para test mas poderão ser "escondidos" com Spring Security
+6. Interface Driven Development and TDD
+
 
 Tarefas: 
 * Model Cliente e proposta (lombok)
@@ -73,3 +76,10 @@ Resultado: Deverá retornar Joao Machado (visto Joao Machado ser repetido na sal
 Todos os clientes: http://localhost:8080/clients
 Cliente: http://localhost:8080/clients/7
 Poposta do client http://localhost:8080/clients/7/sallesSell
+
+
+Improvments: 
+
+BDD reports with Cucumber
+Cache
+Spring Reactor Web

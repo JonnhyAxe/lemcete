@@ -21,7 +21,7 @@
 		<build-plugin.jacoco.version>0.8.3</build-plugin.jacoco.version>
 
 	</properties>
-	
+
 	<repositories>
 		<repository>
 			<id>jcenter-snapshots</id>
@@ -101,6 +101,16 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<!-- <version>2.15.0</version> -->
 		</dependency>
 	</dependencies>
 

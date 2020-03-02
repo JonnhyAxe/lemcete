@@ -30,6 +30,6 @@ public class ClientRepositoryTest {
 		repository.findAll().forEach((c) -> actualList.add(c));
 		
 		assertFalse(actualList.isEmpty());
-		assertEquals(1, actualList.size());
+		assertEquals(2, actualList.size());
 	}
 }
