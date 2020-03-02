@@ -21,7 +21,7 @@ import lombok.ToString;
 
 //@ApiModel(description = "Client's comercial Sell")
 @Data(staticConstructor = "of")
-@ToString(includeFieldNames = false)
+@ToString(includeFieldNames = true)
 @Builder
 
 @NoArgsConstructor

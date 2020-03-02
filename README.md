@@ -37,13 +37,17 @@ A solução encontrada deverá ser compactada em formato .zip e anexada a um ema
 Prerequisitos: 
 
 1. Install https://howtodoinjava.com/automation/lombok-eclipse-installation-examples/
-2.
+2. Assumiu-se uma relação N-to-N entre Clientes e Propostas Comercais.
+3. Inmemory DB
+4. 
 
 Tarefas: 
 * Model Cliente e proposta (lombok)
 * Repository (H2 DB, JPA spring data)
-* Service layer (propostas comerciais, listagem de clientes) + Unit Testing + Swagger
-* Controler (Unit•Primeiro Nome
+* Service layer (propostas comerciais, listagem de clientes) + Unit Testing 
+* Controler (Unit tests + Swagger + Integratio Tests
+
+•Primeiro Nome
 •Último Nome
 •Email
 •Idade [18 - 70]
