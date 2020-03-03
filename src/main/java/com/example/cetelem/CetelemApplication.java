@@ -96,7 +96,7 @@ public class CetelemApplication {
 	}
 	
 	@Bean
-	@Profile("PROD")
+	@Profile("prod")
 	public CommandLineRunner clientSalesPROD(ClientRepository clientRepository,
 			SallesSellRepository sallesSellRepository) {
 		return (args) -> {
