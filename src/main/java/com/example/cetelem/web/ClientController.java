@@ -15,6 +15,7 @@ import com.example.cetelem.service.ClientService;
 @RequestMapping("/client")
 public class ClientController {
 
+	private static final String CLIENT_NOT_FOUND_FOR_THE_GIVEN_ID = "Client not found for the given id : ";
 	private ClientService clientService;
 
 	public ClientController(ClientService clientService) {
@@ -24,7 +25,7 @@ public class ClientController {
 	  @GetMapping(path = "/{id}/salles")
 	  public List<SallesSell> getClientSallesById(@PathVariable("id") Long id) {
 	    return Optional.ofNullable(clientService.getAllSallesSellByClient(id)).orElseThrow(
-	        () -> new RuntimeException("Client not found for the given id : " + id));
+	        () -> new RuntimeException(CLIENT_NOT_FOUND_FOR_THE_GIVEN_ID + id));
 	  }
 
 	

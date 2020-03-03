@@ -58,7 +58,6 @@ public class SalesSelleIImpl implements SallesSellService {
 
 	@Override
 	public void deleteSallesSell(Long sallesSellID) {
-		//Limitation with H2 FK cascading with REMOVE
 		SallesSell sales =  sallesSellRepository.findById(sallesSellID)
 				.orElseThrow(() -> new EntityNotFoundException("No Sells Sell found with id: " + sallesSellID));
 		if (Objects.nonNull(sales)){

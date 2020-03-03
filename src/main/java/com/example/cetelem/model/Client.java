@@ -67,17 +67,17 @@ public class Client {
 	@ApiModelProperty(notes = "First Name of the client - without format contrains")
 	@Min(18)
 	@Max(70)
-	private short age; // [18 - 70]
+	private short age; 
 
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Risk Profile")
-	private ClientRiskProfile risKProfile; // [Baixo, Médio, Elevado]
+	private ClientRiskProfile risKProfile;  
 
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")
-	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
+	private GeographicalArea geographicalArea;  
 	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)

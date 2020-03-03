@@ -47,7 +47,7 @@ public class SallesSell {
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Risk Profile")
-	private SallesSellRiskProfile risKProfile; // [Baixo, Médio, Elevado]
+	private SallesSellRiskProfile risKProfile;  
 
 	@EqualsAndHashCode.Exclude
 	@NotNull
@@ -57,22 +57,14 @@ public class SallesSell {
 	@EqualsAndHashCode.Exclude
 	@NotNull
 	@ApiModelProperty(notes = "Geographical Area")
-	private GeographicalArea geographicalArea; // [Norte, Centro, Sul]
+	private GeographicalArea geographicalArea;  
 
 	@JsonIgnore
 	@ToString.Exclude
 	@Builder.Default
 	@ManyToMany(mappedBy = "sallesSell", fetch = FetchType.EAGER)
-//	@ManyToMany(mappedBy = "sallesSell", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@EqualsAndHashCode.Exclude
 	private Set<Client> clients = new HashSet<Client>();
 
-//	public void setComercialSellAgeRanges(Integer[] vals) {
-//		comercialSellAgeRanges = Arrays.stream(vals).map((val) -> Integer.toString(val)).collect(Collectors.joining(","));
-//	}
-//
-//	public Integer[] getComercialSellAgeRanges() {
-//		return Arrays.stream(comercialSellAgeRanges.split(",")).map((val) -> Integer.parseInt(val)).toArray(Integer[]::new);
-//	}
 
 }

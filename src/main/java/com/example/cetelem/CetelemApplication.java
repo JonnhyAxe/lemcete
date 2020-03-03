@@ -1,12 +1,12 @@
 package com.example.cetelem;
 
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import com.example.cetelem.model.Client;
 import com.example.cetelem.model.ClientRiskProfile;
@@ -27,20 +27,20 @@ public class CetelemApplication {
 		SpringApplication.run(CetelemApplication.class, args);
 	}
 
-//	@Bean
-	public CommandLineRunner clientDemo(ClientRepository clientRepository) {
+	@Bean
+	@Profile("dev")
+	public CommandLineRunner clientSalesDemo(ClientRepository clientRepository,
+			SallesSellRepository sallesSellRepository) {
 		return (args) -> {
+			System.out.println("Demo");
 
-			Client client = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
-					.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
-
-			// create books
-			clientRepository.save(client);
+			createClientsAndSells(clientRepository, sallesSellRepository);
 
 			// fetch all books
 			System.out.println("Client found with findAll():");
 			System.out.println("---------------------------");
 			for (Client clientLoaded : clientRepository.findAll()) {
+
 				System.out.println(clientLoaded);
 			}
 			System.out.println();
@@ -48,84 +48,61 @@ public class CetelemApplication {
 		};
 	}
 
-//	@Bean
-	public CommandLineRunner salesDemo(SallesSellRepository sallesSellRepository) {
-		return (args) -> {
+	private void createClientsAndSells(ClientRepository clientRepository, SallesSellRepository sallesSellRepository) {
+		Client client = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
+				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
+		Client client3 = Client.builder().firstName("Luisa").lastName("Sousa").age((short) 33)
+				.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
 
-			SallesSell comercialSell = SallesSell.builder().name("Kids under 20").comercialSellAgeRanges(FORTHIES)
-					.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.LOW).build();
+		Client client2 = Client.builder().firstName("Joao").lastName("Miguel").age((short) 45)
+				.risKProfile(ClientRiskProfile.AVERAGE).geographicalArea(GeographicalArea.CENTER).build();
 
-			// create books
-			sallesSellRepository.save(comercialSell);
+		SallesSell activeWorkerComercialSell = SallesSell.builder().name("Active worker")
+				.comercialSellAgeRanges(FORTHIES).geographicalArea(GeographicalArea.NORTH)
+				.risKProfile(SallesSellRiskProfile.LOW).build();
+		SallesSell passiveNorthWorkerComercialSell = SallesSell.builder().name("Passive worker")
+				.comercialSellAgeRanges(MID_AGE).geographicalArea(GeographicalArea.NORTH)
+				.risKProfile(SallesSellRiskProfile.HIGH).build();
+		SallesSell passiveCenterWorkerComercialSell = SallesSell.builder().name("Passive worker")
+				.comercialSellAgeRanges(MID_AGE).geographicalArea(GeographicalArea.NORTH)
+				.risKProfile(SallesSellRiskProfile.AVERAGE).build();
+		SallesSell under40ComercialSell = SallesSell.builder().name("Salles under 40")
+				.comercialSellAgeRanges(FORTHIES).geographicalArea(GeographicalArea.NORTH)
+				.risKProfile(SallesSellRiskProfile.LOW).build();
+		SallesSell middleAgeComercialSell = SallesSell.builder().name("Middle age").comercialSellAgeRanges(MID_AGE)
+				.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.AVERAGE).build();
+		SallesSell extremeAgeComercialSell = SallesSell.builder().name("Extreme age")
+				.comercialSellAgeRanges(EXTREME_AGE).geographicalArea(GeographicalArea.NORTH)
+				.risKProfile(SallesSellRiskProfile.AVERAGE).build();
 
-			// fetch all books
-			System.out.println("SallesSell found with findAll():");
-			System.out.println("---------------------------");
-			for (SallesSell comercialSellLoaded : sallesSellRepository.findAll()) {
-				System.out.println(comercialSellLoaded);
-			}
-			System.out.println();
-			System.out
-					.println("SallesSell found with findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges():");
+		sallesSellRepository.save(under40ComercialSell);
+		sallesSellRepository.save(middleAgeComercialSell);
+		sallesSellRepository.save(extremeAgeComercialSell);
+		sallesSellRepository.save(activeWorkerComercialSell);
+		sallesSellRepository.save(passiveNorthWorkerComercialSell);
+		sallesSellRepository.save(passiveCenterWorkerComercialSell);
 
-			List<SallesSell> sallesSellByCriteria = sallesSellRepository
-					.findByRisKProfileAndGeographicalAreaAndComercialSellAgeRanges(SallesSellRiskProfile.LOW,
-							GeographicalArea.NORTH, FORTHIES);
+		client.getSallesSell().add(under40ComercialSell);
+		client.getSallesSell().add(activeWorkerComercialSell);
 
-			System.out.println(sallesSellByCriteria);
+		client2.getSallesSell().add(middleAgeComercialSell);
+		client2.getSallesSell().add(passiveNorthWorkerComercialSell);
 
-		};
+		client3.getSallesSell().add(under40ComercialSell);
+
+		clientRepository.save(client);
+		clientRepository.save(client2);
+		clientRepository.save(client3);
 	}
-
+	
 	@Bean
-	public CommandLineRunner clientSalesDemo(ClientRepository clientRepository,
+	@Profile("PROD")
+	public CommandLineRunner clientSalesPROD(ClientRepository clientRepository,
 			SallesSellRepository sallesSellRepository) {
 		return (args) -> {
+			System.out.println("PROD");
 
-			Client client = Client.builder().firstName("Joao").lastName("Machado").age((short) 35)
-					.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
-			Client client3 = Client.builder().firstName("Luisa").lastName("Sousa").age((short) 33)
-					.risKProfile(ClientRiskProfile.LOW).geographicalArea(GeographicalArea.NORTH).build();
-
-			Client client2 = Client.builder().firstName("Joao").lastName("Miguel").age((short) 45)
-					.risKProfile(ClientRiskProfile.AVERAGE).geographicalArea(GeographicalArea.CENTER).build();
-
-			SallesSell activeWorkerComercialSell = SallesSell.builder().name("Active worker")
-					.comercialSellAgeRanges(FORTHIES).geographicalArea(GeographicalArea.NORTH)
-					.risKProfile(SallesSellRiskProfile.LOW).build();
-			SallesSell passiveNorthWorkerComercialSell = SallesSell.builder().name("Passive worker")
-					.comercialSellAgeRanges(MID_AGE).geographicalArea(GeographicalArea.NORTH)
-					.risKProfile(SallesSellRiskProfile.HIGH).build();
-			SallesSell passiveCenterWorkerComercialSell = SallesSell.builder().name("Passive worker")
-					.comercialSellAgeRanges(MID_AGE).geographicalArea(GeographicalArea.NORTH)
-					.risKProfile(SallesSellRiskProfile.AVERAGE).build();
-			SallesSell under40ComercialSell = SallesSell.builder().name("Salles under 40")
-					.comercialSellAgeRanges(FORTHIES).geographicalArea(GeographicalArea.NORTH)
-					.risKProfile(SallesSellRiskProfile.LOW).build();
-			SallesSell middleAgeComercialSell = SallesSell.builder().name("Middle age").comercialSellAgeRanges(MID_AGE)
-					.geographicalArea(GeographicalArea.NORTH).risKProfile(SallesSellRiskProfile.AVERAGE).build();
-			SallesSell extremeAgeComercialSell = SallesSell.builder().name("Extreme age")
-					.comercialSellAgeRanges(EXTREME_AGE).geographicalArea(GeographicalArea.NORTH)
-					.risKProfile(SallesSellRiskProfile.AVERAGE).build();
-
-			sallesSellRepository.save(under40ComercialSell);
-			sallesSellRepository.save(middleAgeComercialSell);
-			sallesSellRepository.save(extremeAgeComercialSell);
-			sallesSellRepository.save(activeWorkerComercialSell);
-			sallesSellRepository.save(passiveNorthWorkerComercialSell);
-			sallesSellRepository.save(passiveCenterWorkerComercialSell);
-
-			client.getSallesSell().add(under40ComercialSell);
-			client.getSallesSell().add(activeWorkerComercialSell);
-
-			client2.getSallesSell().add(middleAgeComercialSell);
-			client2.getSallesSell().add(passiveNorthWorkerComercialSell);
-
-			client3.getSallesSell().add(under40ComercialSell);
-
-			clientRepository.save(client);
-			clientRepository.save(client2);
-			clientRepository.save(client3);
+			createClientsAndSells(clientRepository, sallesSellRepository);
 
 			// fetch all books
 			System.out.println("Client found with findAll():");

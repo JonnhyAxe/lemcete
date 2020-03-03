@@ -40,7 +40,7 @@ public class SallesController {
 				.geographicalArea(geographicalArea).risKProfile(risKProfile).build();
 
 		return Optional.ofNullable(sallesSellService.getAllClientBySallesSell(sallesSell))
-				.orElseThrow(() -> new RuntimeException("Criteria not found by RiskProfile : " + risKProfile));
+				.orElseThrow(() -> new RuntimeException("Criteria with RiskProfile : " + risKProfile + ", Geographical Area:" + geographicalArea + ",  Age Ranges:" + comercialSellAgeRanges));
 	}
 
 	@PostMapping
