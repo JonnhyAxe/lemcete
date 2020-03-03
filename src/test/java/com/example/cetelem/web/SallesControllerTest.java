@@ -62,9 +62,7 @@ public class SallesControllerTest {
 
 		// MockMvc standalone approach
 		mvc = MockMvcBuilders.standaloneSetup(sallesController)
-//	              .setControllerAdvice(new RestResponseEntityExceptionHandler(),
-//	            		  new PerfectMatchControllerExceptionHandler()
-//	            		  )
+				.setControllerAdvice(new EntityControllerExceptionHandler())
 				.build();
 	}
 

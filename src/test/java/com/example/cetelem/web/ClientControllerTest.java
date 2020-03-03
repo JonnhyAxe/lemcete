@@ -51,9 +51,7 @@ public class ClientControllerTest {
 
 		// MockMvc standalone approach
 		mvc = MockMvcBuilders.standaloneSetup(clientController)
-//	              .setControllerAdvice(new RestResponseEntityExceptionHandler(),
-//	            		  new PerfectMatchControllerExceptionHandler()
-//	            		  )
+				.setControllerAdvice(new EntityControllerExceptionHandler())
 				.build();
 	}
 
@@ -77,16 +75,12 @@ public class ClientControllerTest {
 
 		// when
 		MockHttpServletResponse response = mvc
-				.perform(get("/client/" + clientID + "/salles").contentType(MediaType.APPLICATION_JSON))
-				.andReturn().getResponse();
+				.perform(get("/client/" + clientID + "/salles").contentType(MediaType.APPLICATION_JSON)).andReturn()
+				.getResponse();
 
-		then(response.getStatus())
-			.as(CHECK_THAT_SALES_MATCH_IS_RETREIVED)
-				.isNotNull()
-				.isEqualTo(HttpStatus.OK.value());
+		then(response.getStatus()).as(CHECK_THAT_SALES_MATCH_IS_RETREIVED).isNotNull().isEqualTo(HttpStatus.OK.value());
 
-		then(response.getContentAsString())
-			.as(CHECK_THAT_LIST_CONTENT_IS_CORRECT)
+		then(response.getContentAsString()).as(CHECK_THAT_LIST_CONTENT_IS_CORRECT)
 				.isEqualTo(jsonSallesList.write(expectedListResult).getJson());
 	}
 }

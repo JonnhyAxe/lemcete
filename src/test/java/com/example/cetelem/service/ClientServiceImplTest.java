@@ -24,7 +24,6 @@ import com.example.cetelem.model.SallesSellRiskProfile;
 import com.example.cetelem.repository.ClientRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class ClientServiceImplTest {
 
 	private static final String RANGE_18_45 = "18,45";
