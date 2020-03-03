@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.example.cetelem.model.Client;
 import com.example.cetelem.model.SallesSell;
 import com.example.cetelem.repository.SallesSellRepository;
+import com.example.cetelem.web.exceptions.EntityNotFoundException;
 
 @Component
 public class SalesSelleIImpl implements SallesSellService {
@@ -47,23 +48,23 @@ public class SalesSelleIImpl implements SallesSellService {
 
 	@Override
 	public void upateSallesSell(SallesSell sallesSell) {
-		SallesSell sales = sallesSellRepository.findById(sallesSell.getId()).get();
+		SallesSell sales = sallesSellRepository.findById(sallesSell.getId())
+				.orElseThrow(() -> new EntityNotFoundException("No Sells Sell found with id: " + sallesSell.getId()));
 
 		if (Objects.nonNull(sales)){
 			sallesSellRepository.save(sallesSell);		
 		}
-		//else throw Exception
 	}
 
 	@Override
 	public void deleteSallesSell(Long sallesSellID) {
 		//Limitation with H2 FK cascading with REMOVE
-		SallesSell sales =  sallesSellRepository.findById(sallesSellID).get();
-		if (Objects.nonNull(sallesSellRepository.findById(sallesSellID))){
+		SallesSell sales =  sallesSellRepository.findById(sallesSellID)
+				.orElseThrow(() -> new EntityNotFoundException("No Sells Sell found with id: " + sallesSellID));
+		if (Objects.nonNull(sales)){
 			
 			sales.getClients().stream().forEach((client) -> client.getSallesSell().remove(sales));
 			sallesSellRepository.deleteById(sallesSellID);
 		}
-		//else throw Exception
 	}
 }

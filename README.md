@@ -79,6 +79,12 @@ Poposta do client http://localhost:8080/clients/7/sallesSell
 
 3. Swagger - http://localhost:8080/swagger-ui.html#/
 
+http://localhost:8080/salles/clients/criteria?comercialSellAgeRanges=18%2C45&geographicalArea=NORTH&risKProfile=LOW
+http://localhost:8080/client/7/salles
+PUT salles with id = 1 and risKProfile=HIGH
+http://localhost:8080/client/7/salles
+
+
 Improvements: 
 
 BDD reports with Cucumber

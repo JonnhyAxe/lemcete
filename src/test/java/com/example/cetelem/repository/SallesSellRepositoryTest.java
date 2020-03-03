@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +27,7 @@ public class SallesSellRepositoryTest {
 
 	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
 	@Test
-	public void testAllSalles() throws Exception {
+	public void testAllClients() throws Exception {
 
 		List<Client> actualList = new ArrayList<Client>();
 
@@ -35,4 +36,13 @@ public class SallesSellRepositoryTest {
 		assertFalse(actualList.isEmpty());
 		assertEquals(3, actualList.size());
 	}
+	
+	@DirtiesContext(methodMode = MethodMode.BEFORE_METHOD)
+	@Test(expected = RuntimeException.class)
+	public void testFindSallesWithNonExisitngID() throws Exception {
+
+		Optional<Client> clientOptional = repository.findById(Long.MAX_VALUE);
+		Client cls = clientOptional.orElseThrow(() -> new RuntimeException());
+	}
+	
 }

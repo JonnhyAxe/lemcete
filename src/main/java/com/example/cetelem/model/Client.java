@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Cascade;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -57,11 +58,15 @@ public class Client {
 
 	@EqualsAndHashCode.Exclude
 	@ApiModelProperty(notes = "Email of the client - with format")
+	@Size(min = 1, max = 100)
+	@Pattern(regexp="^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$")
 	private String email;
 
 	@EqualsAndHashCode.Include
 	@NotNull
 	@ApiModelProperty(notes = "First Name of the client - without format contrains")
+	@Min(18)
+	@Max(70)
 	private short age; // [18 - 70]
 
 	@EqualsAndHashCode.Exclude
